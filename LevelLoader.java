@@ -1,56 +1,63 @@
+//might delete this
 public class LevelLoader {
 
     // Level 1 design
-    public static LevelData loadLevel1(){
+     public static Map loadLevel1() {
         int width = 10, height = 10;
-        Tile[][] tiles = new Tile[height][width];
         Position start = new Position(1, 8);
-
-        //initializing floor tiles
+        int chipsRequired = 3;
+        
+        Chip chip = new Chip(start);
+        Map map = new Map(width, height, chip, chipsRequired);
+        
+        // Initialize all as floor tiles first
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[y][x] = new FloorTile(new Position(x, y));
+                map.setTile(new Position(x, y), new FloorTile(new Position(x, y)));
             }
         }
 
-        // insert level 1 lojik
-
-        return new LevelData(tiles, start, 3);
+        //insert lvl 1 design
+        return map;
     }
 
     // Level 2 design
-    public static LevelData loadLevel2(){
+     public static Map loadLevel2() {
         int width = 10, height = 10;
-        Tile[][] tiles = new Tile[height][width];
         Position start = new Position(1, 8);
-
-        //initializing floor tiles
+        int chipsRequired = 3;
+        
+        Chip chip = new Chip(start);
+        Map map = new Map(width, height, chip, chipsRequired);
+        
+        // Initialize all as floor tiles first
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[y][x] = new FloorTile(new Position(x, y));
+                map.setTile(new Position(x, y), new FloorTile(new Position(x, y)));
             }
         }
 
-        // insert level 2 lojik
-
-        return new LevelData(tiles, start, 3);
+        //insert lvl 2 design
+        return map;
     }
 
     // Level 3 design
-    public static LevelData loadLevel3(){
+     public static Map loadLevel3() {
         int width = 10, height = 10;
-        Tile[][] tiles = new Tile[height][width];
         Position start = new Position(1, 8);
-
-        //initializing floor tiles
+        int chipsRequired = 3;
+        
+        Chip chip = new Chip(start);
+        Map map = new Map(width, height, chip, chipsRequired);
+        
+        // Initialize all as floor tiles first
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[y][x] = new FloorTile(new Position(x, y));
+                map.setTile(new Position(x, y), new FloorTile(new Position(x, y)));
             }
         }
 
-        // insert level 3 lojik
-
-        return new LevelData(tiles, start, 3);
+        //insert lvl 3 design
+        return map;
     }
 }

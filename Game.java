@@ -5,7 +5,16 @@
 public class Game {
     private Map currentMap;
     private int currentLevel = 1;
+    private final int TOTAL_LEVELS = 3;
     private boolean gameRunning = true;
+    private GameState gameState = GameState.PLAYING;
+
+    public enum GameState{
+        PLAYING,
+        LEVEL_COMPLETE,
+        GAME_COMPLETE,
+        QUIT
+    }
 
     // constructor
     public Game() {
@@ -16,11 +25,28 @@ public class Game {
      * Loads a level based on the level number.
      */
     private void loadLevel(int level) {
-        LevelData levelData = LevelLoader.loadLevel1();
-        Chip chip = new Chip(levelData.getStartPosition());
-        currentMap = new Map(levelData.getTiles()[0].length, levelData.getTiles().length, chip, levelData.getChipsRequired());
-
+    LevelData levelData;
+    
+    // Load the correct level
+    switch(level) {
+        case 1: levelData = LevelLoader.loadLevel1(); break;
+        case 2: levelData = LevelLoader.loadLevel2(); break;
+        case 3: levelData = LevelLoader.loadLevel3(); break;
     }
+
+    gameState = GameState.PLAYING;
+    
+    /*Chip chip = new Chip(levelData.getStartPosition());
+    currentMap = new Map(levelData.getTiles()[0].length, levelData.getTiles().length, chip, levelData.getChipsRequired());
+    
+    // COPY TILES FROM LevelData TO Map
+    Tile[][] levelTiles = levelData.getTiles();
+    for (int y = 0; y < levelTiles.length; y++) {
+        for (int x = 0; x < levelTiles[y].length; x++) {
+            currentMap.setTile(new Position(x, y), levelTiles[y][x]);
+        }
+    }*/
+}
 
     /*
      * Moves Chip to the target position (GUI will call diz!)
@@ -30,28 +56,58 @@ public class Game {
      * @return true if the move was successful, false otherwise
      */
     public boolean moveChip(int targetX, int targetY){
-        if(!currentMap.inBounds(targetX, targetY)){
+        if(gameState != GameState.PLAYING){
             return false;
         }
-
-        Tile target = currentMap.getTileAt(targetX, targetY);
-        Chip chip = currentMap.getChip();
-
-        //checks if the tile is passable
-        if(!target.isPassable(chip)){
-            return false;
+         boolean moved = currentMap.moveChip(targetX, targetY);
+        
+        // Check if level completed
+        if (currentMap.isLevelCompleted() && currentMap.takeNextLevelRequest()) {
+            if (currentLevel < TOTAL_LEVELS) {
+                gameState = GameState.LEVEL_COMPLETE;
+            } else {
+                gameState = GameState.GAME_COMPLETE;
+            }
         }
-
-        //moves Chip to a new position
-        chip.setPosition(new Position(targetX, targetY));
-
-        //trigger tile effects
-        target.onEnter(currentMap, chip);
-
-        return true;
+        
+        return moved;
     }
+    
 
     // public methods for gui !!!
+
+     /** Continue to next level after completion */
+    public void continueToNextLevel() {
+        if (currentLevel < TOTAL_LEVELS) {
+            currentLevel++;
+            loadLevel(currentLevel);
+        } else {
+            gameState = GameState.GAME_COMPLETE;
+        }
+    }
+
+     /** Quit after level complete */
+    public void quitAfterLevelComplete() {
+        gameState = GameState.QUIT;
+        gameRunning = false;
+    }
+
+     /** Quit during gameplay */
+    public void quitGame() {
+        gameState = GameState.QUIT;
+        gameRunning = false;
+    }
+
+    public GameState getGameState(){
+        return gameState;
+    }
+
+    /*
+     * checks if lvl is completed
+     */
+    public boolean isLevelComplete(){
+        return gameState == GameState.LEVEL_COMPLETE;
+    }
 
     /*
      * returns to the current map
@@ -59,6 +115,14 @@ public class Game {
     public Map getCurrentMap(){
         return currentMap;
     }
+
+    public boolean isGameComplete(){
+        return gameState == GameState.GAME_COMPLETE;
+    }
+
+    public boolean hasMoreLevels(){
+        return currentLevel < TOTAL_LEVELS;
+    } 
 
     /*
      * returns Chip's character
@@ -86,13 +150,6 @@ public class Game {
      */
     public int getLevel(){
         return currentLevel;
-    }
-
-    /*
-     * checks if lvl is completed
-     */
-    public boolean isLevelComplete(){
-        return currentMap.getChipsCollected() >= currentMap.getChipsRequired();
     }
 
     /*
