@@ -26,26 +26,15 @@ public class Game {
      */
     private void loadLevel(int level) {
     Map map;
-    
-    // Load the correct level
     switch(level) {
         case 1: map = LevelLoader.loadLevel1(); break;
         case 2: map = LevelLoader.loadLevel2(); break;
         case 3: map = LevelLoader.loadLevel3(); break;
+        default: throw new IllegalArgumentException("Invalid level: " + level);
     }
-
-    gameState = GameState.PLAYING;
     
-    /*Chip chip = new Chip(levelData.getStartPosition());
-    currentMap = new Map(levelData.getTiles()[0].length, levelData.getTiles().length, chip, levelData.getChipsRequired());
-    
-    // COPY TILES FROM LevelData TO Map
-    Tile[][] levelTiles = levelData.getTiles();
-    for (int y = 0; y < levelTiles.length; y++) {
-        for (int x = 0; x < levelTiles[y].length; x++) {
-            currentMap.setTile(new Position(x, y), levelTiles[y][x]);
-        }
-    }*/
+    this.currentMap = map; // Assign the loaded map
+    this.gameState = GameState.PLAYING; // Reset game state AFTER map is loaded
 }
 
     /*
@@ -83,6 +72,7 @@ public class Game {
             loadLevel(currentLevel);
         } else {
             gameState = GameState.GAME_COMPLETE;
+            // gameRunning = false;
         }
     }
 
@@ -179,18 +169,6 @@ public class Game {
      */
     public boolean isGameRunning(){
         return gameRunning;
-    }
-
-    /*
-     * advances Chip to next lvl
-     */
-    public void advanceToNextLevel(){
-        currentLevel++;
-        if(currentLevel <= NextLevel.levelCount()){
-            loadLevel(currentLevel);
-        }else{
-            gameRunning = false;
-        }
     }
 
 }
