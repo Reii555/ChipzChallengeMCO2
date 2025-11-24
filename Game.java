@@ -25,13 +25,13 @@ public class Game {
      * Loads a level based on the level number.
      */
     private void loadLevel(int level) {
-    LevelData levelData;
+    Map map;
     
     // Load the correct level
     switch(level) {
-        case 1: levelData = LevelLoader.loadLevel1(); break;
-        case 2: levelData = LevelLoader.loadLevel2(); break;
-        case 3: levelData = LevelLoader.loadLevel3(); break;
+        case 1: map = LevelLoader.loadLevel1(); break;
+        case 2: map = LevelLoader.loadLevel2(); break;
+        case 3: map = LevelLoader.loadLevel3(); break;
     }
 
     gameState = GameState.PLAYING;
