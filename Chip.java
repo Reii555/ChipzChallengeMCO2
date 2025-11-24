@@ -1,5 +1,3 @@
-// hi this is a test
-
 /**
  * Represents the Chip in the game
  * Tracks Chip's position, inventory, and association with the current map
