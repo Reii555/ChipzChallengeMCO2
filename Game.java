@@ -16,11 +16,9 @@ public class Game {
      * Loads a level based on the level number.
      */
     private void loadLevel(int level) {
-        NextLevel.load(level);
-        Position start = new Position(NextLevel.startX, NextLevel.startY);
-        Chip chip = new Chip(start);
-        currentMap = new Map(NextLevel.grid[0].length, NextLevel.grid.length, chip, NextLevel.chipsRequired);
-        currentMap.load(NextLevel.grid);
+        LevelData levelData = LevelLoader.loadLevel1();
+        Chip chip = new Chip(levelData.getStartPosition());
+        currentMap = new Map(levelData.getTiles()[0].length, levelData.getTiles().length, chip, levelData.getChipsRequired());
 
     }
 

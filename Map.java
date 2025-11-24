@@ -86,18 +86,20 @@ public class Map {
 
         Tile target = getTileAt(targetX, targetY);
 
-        // 1) passability
+        // passability
         if (!target.isPassable(chip)) {
             return false;
         }
 
-        // 2) move into tile
+        updateLastMoveDirection(targetX, targetY);
+
+        // move into tile
         chip.setPosition(new Position(targetX, targetY));
 
-        // 3) trigger tile effects (items, doors, exit, force)
+        // trigger tile effects (items, doors, exit, force)
         target.onEnter(this, chip);
 
-        //handleForceMovement(); suggested by deepseek?
+        handleForceMovement();
 
         return true;
     }
@@ -123,11 +125,13 @@ public class Map {
         }
 
         Tile tile = getTileAt(pos.getX(), pos.getY());
-        if(tile == null){
+        return tile != null && tile.isPassable(c); // fo null safety !!@
+        
+        /*if(tile == null){
             return false; 
         } else {
             return tile.isPassable(c);
-        }
+        }*/
     }
 
     /*
@@ -169,7 +173,7 @@ public class Map {
      *
      * @return true if the next level was requested, false otherwise
      */
-    private boolean takeNextLevelRequest() {
+    public boolean takeNextLevelRequest() {
         boolean v = nextLevelRequested; 
         nextLevelRequested = false; 
         return v;
@@ -214,6 +218,38 @@ public class Map {
         int d = forceDy; 
         forceDy = 0; 
         return d;
+    }
+
+    private void updateLastMoveDirection(int targetX, int targetY){
+        Position current = chip.getPosition();
+        if(targetX > current.getX()){
+            chip.setLastMoveDirection(Direction.RIGHT);
+        }else if(targetX < current.getX()){
+            chip.setLastMoveDirection(Direction.LEFT);
+        }else if(targetY > current.getY()){
+            chip.setLastMoveDirection(Direction.DOWN);
+        }else if(targetY < current.getY()){
+            chip.setLastMoveDirection(Direction.UP);
+        }
+    }
+
+    private void handleForceMovement(){
+        while(hasForce()){
+            int tx = chip.getPosition().getX() + takeForceDx();
+            int ty = chip.getPosition().getY() + takeForceDy();
+            
+            if(!inBounds(tx, ty)){
+                break;
+            }
+
+            Tile nextTile = getTileAt(tx, ty);
+            if(nextTile == null || !nextTile.isPassable(chip)){
+                break;
+            }
+
+            chip.setPosition(new Position(tx, ty));
+            nextTile.onEnter(this, chip);
+        }
     }
 
     /**
