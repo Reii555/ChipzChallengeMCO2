@@ -113,4 +113,15 @@ public class Inventory {
     public boolean hasBlueKey(){
         return blueKeys > 0;
     }
+
+    /**
+     * Resets inventory for new level
+     */
+    public void reset() {
+        this.redKeys = 0;
+        this.blueKeys = 0;
+        this.microchips = 0;
+        this.hasFireBoots = false;
+        this.hasFlippers = false;
+    }
 }

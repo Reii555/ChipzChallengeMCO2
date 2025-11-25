@@ -113,10 +113,12 @@ public class Game {
     public void continueToNextLevel() {
         if (currentLevel < TOTAL_LEVELS) {
             currentLevel++;
+
+            getChip().getInventory().reset(); //resets inventory
             loadLevel(currentLevel);
         } else {
             gameState = GameState.GAME_COMPLETE;
-            // gameRunning = false;
+            // gameRunning = false; hai jai i commented dis out for a possible victory screen u might implement !
         }
     }
 
