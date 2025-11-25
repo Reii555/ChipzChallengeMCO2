@@ -122,6 +122,10 @@ public class LevelLoader {
         // fire boots
         map.setTile(new Position(8, 5), new FireBootsItem(new Position(8,5)));
 
+        // flipper
+        map.setTile(new Position(7, 4), new FireBootsItem(new Position(7,4)));
+
+
         return map;
     }
 
