@@ -11,7 +11,7 @@ public class RedDoorTile extends DoorTile {
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        if (chip.getInventory().hasRedKey()) {
+        if (chip != null && chip.getInventory().hasRedKey()) {
             chip.getInventory().useRedKey();
             map.removeTile(this.getPosition()); // Remove door after opening
         }

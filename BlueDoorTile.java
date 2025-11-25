@@ -11,7 +11,7 @@ public class BlueDoorTile extends DoorTile {
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        if (chip.getInventory().hasBlueKey()) {
+        if (chip != null && chip.getInventory().hasBlueKey()) {
             chip.getInventory().useBlueKey();
             map.removeTile(this.getPosition()); // Remove door after opening
         }
