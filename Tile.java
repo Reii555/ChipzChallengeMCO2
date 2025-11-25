@@ -6,9 +6,13 @@ public abstract class Tile {
         this.position = position;
     }
 
-    // getterz
+    // getter + setter
     public Position getPosition() {
         return position;
+    }
+
+    protected void setPosition(Position pos) {
+        this.position = pos; 
     }
 
     // abstract methodz

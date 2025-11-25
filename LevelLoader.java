@@ -290,6 +290,10 @@ public class LevelLoader {
         // exit tile
         map.setTile(new Position(3, 6), new ExitTile(new Position(3,6)));
 
+        // enemy
+        // Add AngryTeeth enemy at starting position (1,1)
+        map.setTile(new Position(1, 1), new AngryTeethTile(new Position(1, 1)));
+
         //items
         // microchips
         map.setTile(new Position(3, 6), new Microchip(new Position(3,6)));

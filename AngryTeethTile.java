@@ -1,5 +1,5 @@
 public class AngryTeethTile extends Tile{
-    private Direction moveDirection = Direction.LEFT;
+    private Direction moveDirection = Direction.RIGHT;
 
     public AngryTeethTile(Position position){
         super(position);
@@ -12,12 +12,34 @@ public class AngryTeethTile extends Tile{
 
     @Override
     public void onEnter(Map map, Chip chip){
-         // If Chip steps on enemy = game over
-        // You'll need to handle this in Game.java
+        chip.takeDmg(1);
     }
 
     public void enemyMovement(Map map) {
-        //insert enemy's movement sa map
+        Position currentPos = getPosition();
+        Position nextPos = currentPos.move(moveDirection);
+
+        // Check if next position is valid and passable (floor or Chip)
+        if (map.isValidPosition(nextPos)) {
+            Tile nextTile = map.getTileAt(nextPos.getX(), nextPos.getY());
+            
+            // Allow moving onto floor tiles or where Chip is
+            if (nextTile instanceof FloorTile) {
+                // Move the enemy
+                map.setTile(currentPos, new FloorTile(currentPos));
+                map.setTile(nextPos, this);
+            } else {
+                // Hit wall or obstacle - reverse direction
+                reverseDirection();
+            }
+        } else {
+            // Out of bounds - reverse direction  
+            reverseDirection();
+        }
+    }
+
+    private void reverseDirection() {
+        moveDirection = (moveDirection == Direction.LEFT) ? Direction.RIGHT : Direction.LEFT;
     }
 
     @Override

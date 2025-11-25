@@ -45,11 +45,23 @@ public class Game {
      * @return true if the move was successful, false otherwise
      */
     public boolean moveChip(int targetX, int targetY){
-        if(gameState != GameState.PLAYING){
+        if(gameState != GameState.PLAYING || !getChip().isAlive()){
             return false;
         }
          boolean moved = currentMap.moveChip(targetX, targetY);
         
+        // (in lvl 3 only) Chip takes dmg from enemy
+        Tile newTile = currentMap.getTileAt(targetX, targetY);
+        if (newTile instanceof AngryTeethTile){
+            getChip().takeDmg(1);
+            if (!getChip().isAlive()){
+                gameState = GameState.QUIT;
+            }
+        }
+        
+        // Move enemies after player moves
+        updateEnemies();
+
         // Check if level completed
         if (currentMap.isLevelCompleted() && currentMap.takeNextLevelRequest()) {
             if (currentLevel < TOTAL_LEVELS) {
@@ -62,8 +74,18 @@ public class Game {
         return moved;
     }
     
-
-    // public methods for gui !!!
+    public void updateEnemies(){
+        if(currentLevel == 3){
+            for (int y = 0; y < getMapHeight(); y++){
+                for (int x = 0; x < getMapWidth(); x++){
+                    Tile tile = getTileAt(x, y);
+                    if (tile instanceof AngryTeethTile){
+                        ((AngryTeethTile) tile).enemyMovement(currentMap);
+                    }
+                }
+            }
+        }
+    }
 
      /** Continue to next level after completion */
     public void continueToNextLevel() {
