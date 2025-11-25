@@ -85,6 +85,14 @@ public class Game {
                     Tile tile = getTileAt(x, y);
                     if (tile instanceof AngryTeethTile){
                         ((AngryTeethTile) tile).enemyMovement(currentMap);
+
+                        Position enemyPos = tile.getPosition();
+                        if (enemyPos.equals(getChip().getPosition())){
+                        getChip().takeDmg(1);
+                        if (!getChip().isAlive()){
+                            gameState = GameState.GAME_OVER;
+                            }
+                        }
                     }
                 }
             }
