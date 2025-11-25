@@ -17,6 +17,18 @@ public class LevelLoader {
             }
         }
 
+        // walls
+        for(int x = 0; x < width; x++){
+            map.setTile(new Position(x, 0), new WallTile(new Position(x, 0))); // top border
+            map.setTile(new Position(x, height-1), new WallTile(new Position(x, height-1))); // bottom border
+        }
+
+        for(int y = 0; y < height; y++){
+            map.setTile(new Position(0, y), new WallTile(new Position(0, y))); // left border
+            map.setTile(new Position(width-1, y), new WallTile(new Position(width-1, y))); // right border
+
+        }
+
         //insert lvl 1 design
 
 
