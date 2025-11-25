@@ -12,10 +12,8 @@ public class FireTile extends Tile {
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        // No special action needed when entering a fire tile
         if (!isPassable(chip)) {
-            // Handle the case where Chip cannot walk on fire (e.g., lose a life)
-            chip.die();
+            chip.die();             // Chip dies without the fire boots in the fire
         }
     }
 

@@ -12,9 +12,8 @@ public class WaterTile extends Tile {
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        // logic about if Chip doesnt have the flippers it dies, and can pass if flippers r present
         if(!isPassable(chip)){
-            chip.die();
+            chip.die();         // Chip dies without the Flippers in the water
         }
     }
 

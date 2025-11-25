@@ -13,6 +13,7 @@ public class Game {
         PLAYING,
         LEVEL_COMPLETE,
         GAME_COMPLETE,
+        GAME_OVER,
         QUIT
     }
 
@@ -55,7 +56,7 @@ public class Game {
         if (newTile instanceof AngryTeethTile){
             getChip().takeDmg(1);
             if (!getChip().isAlive()){
-                gameState = GameState.QUIT;
+                gameState = GameState.GAME_OVER;
             }
         }
         
@@ -74,6 +75,9 @@ public class Game {
         return moved;
     }
     
+    /*
+    * Updates enemy behavior and movement for the enemy in lvl 3
+    */
     public void updateEnemies(){
         if(currentLevel == 3){
             for (int y = 0; y < getMapHeight(); y++){
@@ -87,7 +91,17 @@ public class Game {
         }
     }
 
-     /** Continue to next level after completion */
+    /*
+    * Checks if the game is over (when Chip's health gets to 0)
+    * @return
+    */
+    public boolean isGameOver(){
+        return gameState == GameState.GAME_OVER;
+    }
+
+    /*
+     * Continue to next level after completion 
+     */
     public void continueToNextLevel() {
         if (currentLevel < TOTAL_LEVELS) {
             currentLevel++;
