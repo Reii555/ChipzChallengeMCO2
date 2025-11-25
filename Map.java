@@ -162,6 +162,24 @@ public class Map {
     }
 
     /**
+     * Removes an item tile only if it's actually an ItemTile
+     * @param pos the position of the item to remove
+     * @return true if an item was removed, false otherwise
+     */
+    public boolean removeItemTile(Position pos) {
+        if (!inBounds(pos.getX(), pos.getY())) {
+            return false;
+        }
+        
+        Tile currentTile = getTileAt(pos.getX(), pos.getY());
+        if (currentTile instanceof ItemTile) {
+            setTile(pos, new FloorTile(pos));
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Requests to proceed to the next level after completion.
      */
     public void requestNextLevel(){ 
