@@ -12,7 +12,7 @@ public class ExitTile extends Tile {
     @Override
     public void onEnter(Map map, Chip chip){
         if (map.isLevelCompleted()) {
-            map.setLevelCompleted(true);
+            map.requestNextLevel();
         }
     }
 
