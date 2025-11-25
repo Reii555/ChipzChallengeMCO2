@@ -4,7 +4,7 @@ public class LevelLoader {
     // Level 1 design
      public static Map loadLevel1() {
         int width = 10, height = 10;
-        Position start = new Position(1, 8);
+        Position start = new Position(4, 1);
         int chipsRequired = 3;
         
         Chip chip = new Chip(start);
@@ -29,9 +29,75 @@ public class LevelLoader {
 
         }
 
-        //insert lvl 1 design
+        // interior wall
+        map.setTile(new Position(4, 8), new WallTile(new Position(4, 8)));
+        map.setTile(new Position(5, 8), new WallTile(new Position(5, 8)));
+        map.setTile(new Position(6, 8), new WallTile(new Position(6, 8)));
+        map.setTile(new Position(7, 8), new WallTile(new Position(7, 8)));
 
+        map.setTile(new Position(6, 7), new WallTile(new Position(6, 7)));
+        map.setTile(new Position(7, 7), new WallTile(new Position(8, 7)));
 
+        map.setTile(new Position(1, 6), new WallTile(new Position(1, 6)));
+        map.setTile(new Position(2, 6), new WallTile(new Position(2, 6)));
+        map.setTile(new Position(3, 6), new WallTile(new Position(3, 6)));
+        map.setTile(new Position(4, 6), new WallTile(new Position(4, 6)));
+
+        map.setTile(new Position(2, 4), new WallTile(new Position(2, 4)));
+        map.setTile(new Position(3, 4), new WallTile(new Position(3, 4)));
+        map.setTile(new Position(5, 4), new WallTile(new Position(5, 4)));
+        
+        map.setTile(new Position(3, 3), new WallTile(new Position(3, 3)));
+        map.setTile(new Position(4, 3), new WallTile(new Position(4,3)));
+        map.setTile(new Position(5, 3), new WallTile(new Position(5, 3)));
+        map.setTile(new Position(6, 3), new WallTile(new Position(6, 3)));
+
+        map.setTile(new Position(3, 2), new WallTile(new Position(3, 2)));
+        map.setTile(new Position(4, 2), new WallTile(new Position(4, 2)));
+        
+        map.setTile(new Position(3, 1), new WallTile(new Position(3, 1)));
+
+        // water tile/s
+        map.setTile(new Position(6, 1), new WaterTile(new Position(6, 1)));
+        map.setTile(new Position(7, 1), new WaterTile(new Position(7, 1)));
+        map.setTile(new Position(8, 1), new WaterTile(new Position(8, 1)));
+
+        map.setTile(new Position(6, 2), new WaterTile(new Position(6, 2)));
+        map.setTile(new Position(7, 2), new WaterTile(new Position(7, 2)));
+        map.setTile(new Position(8, 2), new WaterTile(new Position(8, 2)));
+
+        map.setTile(new Position(7, 3), new WaterTile(new Position(7, 3)));
+        map.setTile(new Position(8, 3), new WaterTile(new Position(8, 3)));
+
+        // fire tile/s
+        map.setTile(new Position(8, 7), new FireTile(new Position(8, 7)));
+
+        // red door
+        map.setTile(new Position(4, 7), new RedDoorTile(new Position(4, 7)));
+
+        // blue door
+        map.setTile(new Position(1, 4), new BlueDoorTile(new Position(1, 4)));
+
+        // exit tile
+        map.setTile(new Position(8, 8), new ExitTile(new Position(8, 8)));
+
+        // items
+        // microchips
+        map.setTile(new Position(1, 1), new Microchip(new Position(1, 1)));
+        map.setTile(new Position(5, 2), new Microchip(new Position(5, 2)));
+        map.setTile(new Position(1, 7), new Microchip(new Position(1, 7)));
+        
+        // red key
+        map.setTile(new Position(2, 1), new RedKeyItem(new Position(2, 1)));
+        
+        // blue key
+        map.setTile(new Position(4, 4), new BlueKeyItem(new Position(4, 4)));
+
+        // fire boots
+        map.setTile(new Position(1, 8), new FireBootsItem(new Position(1, 8)));
+
+        // flippers
+        map.setTile(new Position(5, 1), new FlipperItem(new Position(5, 1)));
 
         return map;
     }
