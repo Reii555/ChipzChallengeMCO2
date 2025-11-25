@@ -7,6 +7,8 @@
     private Direction lastMoveDirection;
     private Inventory inventory;
     private Map map;
+    private int health;
+    private final int MAX_HEALTH = 3;
 
   /**
    * (Constructor) creates Chip with a specified starting position
@@ -14,6 +16,7 @@
     public Chip(Position start) {
         this.position = start;
         this.inventory = new Inventory();
+        this.health = MAX_HEALTH;           // starts w/ full health
     }
 
   /**
@@ -35,6 +38,32 @@
     */
     public void setPosition(Position pos) {
         this.position = pos;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void takeDmg(int damage){
+        this.health -= damage;
+        if(this.health <= 0){
+            die();
+        }
+    }
+
+    public void die(){
+        this.health = 0;
+    }
+
+    public boolean isAlive(){
+        return health > 0;
+    }
+
+    /*
+    * resets Chip's health every new level
+    */
+    public void resetHealth(){
+        this.health = MAX_HEALTH;
     }
 
     /*
