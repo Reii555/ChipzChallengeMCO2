@@ -40,7 +40,51 @@ public class LevelLoader {
             }
         }
 
-        //insert lvl 2 design
+        // walls
+        for(int x = 0; x < width; x++){
+            map.setTile(new Position(x, 0), new WallTile(new Position(x, 0))); // top border
+            map.setTile(new Position(x, height-1), new WallTile(new Position(x, height-1))); // bottom border
+        }
+
+        for(int y = 0; y < height; y++){
+            map.setTile(new Position(0, y), new WallTile(new Position(0, y))); // left border
+            map.setTile(new Position(width-1, y), new WallTile(new Position(width-1, y))); // right border
+
+        }
+
+        // interior walls
+        map.setTile(new Position(2, 8), new IceTile(new Position(2, 8)));
+        
+        map.setTile(new Position(2, 7), new IceTile(new Position(2, 7)));
+        
+        map.setTile(new Position(2, 6), new IceTile(new Position(2, 6)));
+        map.setTile(new Position(3, 6), new IceTile(new Position(3, 6)));
+        map.setTile(new Position(4, 6), new IceTile(new Position(2, 6)));
+        map.setTile(new Position(7, 6), new IceTile(new Position(7, 6)));
+        map.setTile(new Position(8, 6), new IceTile(new Position(8, 6)));
+
+        map.setTile(new Position(3, 5), new IceTile(new Position(2, 5)));
+        map.setTile(new Position(4, 5), new IceTile(new Position(2, 5)));
+        map.setTile(new Position(5, 5), new IceTile(new Position(2, 5)));
+
+        map.setTile(new Position(3, 4), new IceTile(new Position(3, 4)));
+        map.setTile(new Position(8, 4), new IceTile(new Position(8, 4)));
+
+        map.setTile(new Position(3, 3), new IceTile(new Position(3, 3)));
+        map.setTile(new Position(4, 3), new IceTile(new Position(4, 3)));
+        map.setTile(new Position(7, 3), new IceTile(new Position(7, 3)));
+        map.setTile(new Position(8, 3), new IceTile(new Position(8, 3)));
+
+        map.setTile(new Position(3, 2), new IceTile(new Position(3, 2)));
+        map.setTile(new Position(4, 2), new IceTile(new Position(4, 2)));
+        map.setTile(new Position(6, 2), new IceTile(new Position(6, 2)));
+        map.setTile(new Position(7, 2), new IceTile(new Position(7, 2)));
+        map.setTile(new Position(8, 2), new IceTile(new Position(8, 2)));
+
+        map.setTile(new Position(6, 1), new IceTile(new Position(6, 1)));
+        map.setTile(new Position(7, 1), new IceTile(new Position(7, 1)));
+        map.setTile(new Position(8, 1), new IceTile(new Position(8, 1)));
+
         return map;
     }
 
@@ -78,8 +122,6 @@ public class LevelLoader {
             map.setTile(new Position(width-1, y), new WallTile(new Position(width-1, y))); // right border
 
         }
-
-        //insert lvl 3 design
 
         //ice tiles placing
         map.setTile(new Position(2, 8), new IceTile(new Position(2, 8)));
