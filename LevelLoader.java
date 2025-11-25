@@ -284,8 +284,6 @@ public class LevelLoader {
         map.setTile(new Position(2, 3), new IceTile(new Position(2,3)));
         map.setTile(new Position(3,3), new IceTile(new Position(3,3)));
 
-
-
         // red door
         map.setTile(new Position(5, 3), new RedDoorTile(new Position(5,3)));
 
@@ -295,6 +293,8 @@ public class LevelLoader {
         map.setTile(new Position(1, 4), new Microchip(new Position(1,4)));
         map.setTile(new Position(8, 2), new Microchip(new Position(8,2)));
 
+        // red key
+        map.setTile(new Position(7, 4), new RedKeyItem(new Position(7,4)));
 
         return map;
     }
