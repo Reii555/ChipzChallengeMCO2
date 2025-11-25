@@ -141,9 +141,9 @@ public class LevelLoader {
         map.setTile(new Position(7, 6), new WallTile(new Position(7, 6)));
         map.setTile(new Position(8, 6), new WallTile(new Position(8, 6)));
 
-        map.setTile(new Position(3, 5), new WallTile(new Position(2, 5)));
-        map.setTile(new Position(4, 5), new WallTile(new Position(2, 5)));
-        map.setTile(new Position(5, 5), new WallTile(new Position(2, 5)));
+        map.setTile(new Position(3, 5), new WallTile(new Position(3, 5)));
+        map.setTile(new Position(4, 5), new WallTile(new Position(4, 5)));
+        map.setTile(new Position(5, 5), new WallTile(new Position(5, 5)));
 
         map.setTile(new Position(3, 4), new WallTile(new Position(3, 4)));
         map.setTile(new Position(8, 4), new WallTile(new Position(8, 4)));
@@ -201,7 +201,7 @@ public class LevelLoader {
         map.setTile(new Position(8, 5), new FireBootsItem(new Position(8,5)));
 
         // flipper
-        map.setTile(new Position(7, 4), new FireBootsItem(new Position(7,4)));
+        map.setTile(new Position(7, 4), new FlipperItem(new Position(7,4)));
 
 
         return map;
@@ -223,13 +223,6 @@ public class LevelLoader {
             }
         }
 
-        // Initialize all as floor tiles first
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                map.setTile(new Position(x, y), new FloorTile(new Position(x, y)));
-            }
-        }
-
         // walls
         for(int x = 0; x < width; x++){
             map.setTile(new Position(x, 0), new WallTile(new Position(x, 0))); // top border
@@ -241,6 +234,28 @@ public class LevelLoader {
             map.setTile(new Position(width-1, y), new WallTile(new Position(width-1, y))); // right border
 
         }
+
+        // interior walls
+        map.setTile(new Position(6, 7), new WallTile(new Position(6,7)));
+
+        map.setTile(new Position(1, 6), new WallTile(new Position(1,6)));
+        map.setTile(new Position(2, 6), new WallTile(new Position(2,6)));
+        map.setTile(new Position(4, 6), new WallTile(new Position(4,6)));
+        map.setTile(new Position(6, 6), new WallTile(new Position(6,6)));
+
+        map.setTile(new Position(1, 5), new WallTile(new Position(1,5)));
+        map.setTile(new Position(2, 5), new WallTile(new Position(2,5)));
+        map.setTile(new Position(3, 5), new WallTile(new Position(3,5)));
+        map.setTile(new Position(4, 5), new WallTile(new Position(4,5)));
+        map.setTile(new Position(6, 5), new WallTile(new Position(6,5)));
+
+        map.setTile(new Position(4, 4), new WallTile(new Position(4,4)));
+        map.setTile(new Position(6, 4), new WallTile(new Position(6,4)));
+
+        map.setTile(new Position(4, 3), new WallTile(new Position(4,3)));
+        map.setTile(new Position(6, 3), new WallTile(new Position(6,3)));
+        map.setTile(new Position(7, 3), new WallTile(new Position(4,3)));
+        map.setTile(new Position(8, 3), new WallTile(new Position(6,3)));
 
         //ice tiles placing
         map.setTile(new Position(2, 8), new IceTile(new Position(2, 8)));
@@ -269,33 +284,17 @@ public class LevelLoader {
         map.setTile(new Position(2, 3), new IceTile(new Position(2,3)));
         map.setTile(new Position(3,3), new IceTile(new Position(3,3)));
 
-        // interior walls
-        map.setTile(new Position(6, 7), new IceTile(new Position(6,7)));
 
-        map.setTile(new Position(1, 6), new IceTile(new Position(1,6)));
-        map.setTile(new Position(2, 6), new IceTile(new Position(2,6)));
-        map.setTile(new Position(4, 6), new IceTile(new Position(4,6)));
-        map.setTile(new Position(6, 6), new IceTile(new Position(6,6)));
-
-        map.setTile(new Position(1, 5), new IceTile(new Position(1,5)));
-        map.setTile(new Position(2, 5), new IceTile(new Position(2,5)));
-        map.setTile(new Position(3, 5), new IceTile(new Position(3,5)));
-        map.setTile(new Position(4, 5), new IceTile(new Position(4,5)));
-        map.setTile(new Position(6, 5), new IceTile(new Position(6,5)));
-
-        map.setTile(new Position(4, 4), new IceTile(new Position(4,4)));
-        map.setTile(new Position(6, 4), new IceTile(new Position(6,4)));
-
-        map.setTile(new Position(4, 3), new IceTile(new Position(4,3)));
-        map.setTile(new Position(6, 3), new IceTile(new Position(6,3)));
-        map.setTile(new Position(7, 3), new IceTile(new Position(4,3)));
-        map.setTile(new Position(8, 3), new IceTile(new Position(6,3)));
 
         // red door
         map.setTile(new Position(5, 3), new RedDoorTile(new Position(5,3)));
 
         //items
+        // microchips
         map.setTile(new Position(3, 6), new Microchip(new Position(3,6)));
+        map.setTile(new Position(1, 4), new Microchip(new Position(1,4)));
+        map.setTile(new Position(8, 2), new Microchip(new Position(8,2)));
+
 
         return map;
     }
