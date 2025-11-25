@@ -114,6 +114,16 @@ public class Map {
     }
 
     /*
+     * Marks the level as completed and requests next level transition
+     * @param completed true if level is completed
+     */
+    public void setLevelCompleted(boolean completed) {
+        if (completed && isLevelCompleted()) {
+            requestNextLevel(); // This triggers the level completion process
+        }
+    }
+
+    /*
     * Checks if a position is passable for Chip
     * @param pos the position to check
     * @param c the Chip trying to pass
