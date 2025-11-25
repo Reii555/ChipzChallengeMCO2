@@ -151,7 +151,7 @@ public class Map {
     }
 
 
-    /**
+    /*
      * Sets a tile at the specified position on the map.
      *
      * @param pos the position of the tile
@@ -161,23 +161,23 @@ public class Map {
         tiles[pos.getY()][pos.getX()] = t;
     }
 
-    /**
-     * Removes an item tile only if it's actually an ItemTile
-     * @param pos the position of the item to remove
-     * @return true if an item was removed, false otherwise
-     */
-    public boolean removeItemTile(Position pos) {
-        if (!inBounds(pos.getX(), pos.getY())) {
-            return false;
-        }
-        
-        Tile currentTile = getTileAt(pos.getX(), pos.getY());
-        if (currentTile instanceof ItemTile) {
-            setTile(pos, new FloorTile(pos));
-            return true;
-        }
+/*
+ * Removes any tile and replaces it with a floor tile
+ * @param pos the position of the tile to remove
+ * @return true if a tile was removed, false otherwise
+ */
+public boolean removeTile(Position pos) {
+    if (!inBounds(pos.getX(), pos.getY())) {
         return false;
     }
+    
+    Tile currentTile = getTileAt(pos.getX(), pos.getY());
+    if (currentTile != null) {
+        setTile(pos, new FloorTile(pos));
+        return true;
+    }
+    return false;
+}
 
     /**
      * Requests to proceed to the next level after completion.

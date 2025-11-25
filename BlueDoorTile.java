@@ -1,20 +1,19 @@
-public abstract class BlueDoorTile extends DoorTile {
+public class BlueDoorTile extends DoorTile {
 
     public BlueDoorTile(Position position) {
-        super(position);
+        super(position, "blue", "BlueDoorTile", "blue_door");
     }
 
     @Override
     public boolean isPassable(Chip c) {
-        Inventory inv = c.getInventory();
-        return inv.hasBlueKey(); // Blue door tiles are passable only if the player has a blue key
+        return c.getInventory().hasBlueKey();
     }
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        Inventory inv = chip.getInventory();
-        if (inv.hasBlueKey()) {
-            inv.useBlueKey(); // Use a blue key when entering the blue door tile
+        if (chip.getInventory().hasBlueKey()) {
+            chip.getInventory().useBlueKey();
+            map.removeTile(this.getPosition()); // Remove door after opening
         }
     }
 

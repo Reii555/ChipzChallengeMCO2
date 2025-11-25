@@ -1,20 +1,19 @@
-public abstract class RedDoorTile extends DoorTile {
+public class RedDoorTile extends DoorTile {
 
     public RedDoorTile(Position position) {
-        super(position);
+        super(position, "red", "RedDoorTile", "red_door");
     }
 
     @Override
     public boolean isPassable(Chip c) {
-        Inventory inv = c.getInventory();
-        return inv.hasRedKey(); // Red door tiles are passable only if the player has a red key
+        return c.getInventory().hasRedKey();
     }
 
     @Override
     public void onEnter(Map map, Chip chip) {
-        Inventory inv = chip.getInventory();
-        if (inv.hasRedKey()) {
-            inv.useRedKey(); // Use a red key when entering the red door tile
+        if (chip.getInventory().hasRedKey()) {
+            chip.getInventory().useRedKey();
+            map.removeTile(this.getPosition()); // Remove door after opening
         }
     }
 

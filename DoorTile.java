@@ -1,23 +1,30 @@
 public abstract class DoorTile extends Tile {
+    private String doorColor;
+    private String tileType;
+    private String visualState;
 
-    public DoorTile(Position position) {
+   public DoorTile(Position position, String doorColor, String tileType, String visualState) {
         super(position);
+        this.doorColor = doorColor;
+        this.tileType = tileType;
+        this.visualState = visualState;
+    }
+
+   public abstract boolean isPassable(Chip c);
+   public abstract void onEnter(Map map, Chip chip);
+
+    public String getDoorState(){
+        return doorColor + "_door";
     }
 
     @Override
-    public boolean isPassable(Chip c) {
-        Inventory inv = c.getInventory();
-        return inv.hasKey(); // Door tiles are passable only if the player has a key
+    public String getTileType() {
+        return tileType;
     }
 
     @Override
-    public void onEnter(Map map, Chip chip) {
-        Inventory inv = chip.getInventory();
-        if (inv.hasKey()) {
-            inv.useKey(); // Use a key when entering the door tile
-        }
+    public String getVisualState() {
+        return visualState;
     }
-
-    public abstract String getDoorState();
 
 }
