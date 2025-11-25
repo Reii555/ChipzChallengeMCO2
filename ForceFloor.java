@@ -19,6 +19,7 @@ public class ForceFloor extends Tile {
             case DOWN: dy = 1; break;
             case LEFT: dx = -1; break;
             case RIGHT: dx = 1; break;
+            // ignoring the NONE here
         }
         map.requestForce(dx, dy);
     }

@@ -16,11 +16,7 @@ public abstract class ItemTile extends Tile {
     }
 
     @Override
-    public void onEnter(Map map, Chip chip){
-        chip.getInventory().addMicrochip();
-        map.incrementChipsCollected();
-        map.removeTile(this.getPosition()); 
-    }
+    public abstract void onEnter(Map map, Chip chip);
 
     public String getItemState(){ 
         return itemState; 
