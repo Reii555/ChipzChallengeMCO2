@@ -366,7 +366,30 @@ public class LevelLoader {
         map.setTile(new Position(5, 7), new WallTile(new Position(5, 7)));
 
         // mud tiles
+        map.setTile(new Position(2, 1), new MudTile(new Position(2,1)));
+        map.setTile(new Position(3, 1), new MudTile(new Position(3,1)));
 
+        map.setTile(new Position(1, 2), new MudTile(new Position(1,2)));
+        map.setTile(new Position(2, 2), new MudTile(new Position(2,2)));
+        map.setTile(new Position(3, 2), new MudTile(new Position(3,2)));
+
+        map.setTile(new Position(1, 3), new MudTile(new Position(1,3)));
+        map.setTile(new Position(2, 3), new MudTile(new Position(2,3)));
+        map.setTile(new Position(3, 3), new MudTile(new Position(3,3)));
+
+        map.setTile(new Position(6, 4), new MudTile(new Position(6,4)));
+        map.setTile(new Position(7, 4), new MudTile(new Position(7,4)));
+        map.setTile(new Position(8, 4), new MudTile(new Position(8,4)));
+
+        map.setTile(new Position(6, 5), new MudTile(new Position(6,5)));
+        map.setTile(new Position(7, 5), new MudTile(new Position(7,5)));
+
+        map.setTile(new Position(6, 6), new MudTile(new Position(6,6)));
+        map.setTile(new Position(7, 6), new MudTile(new Position(7,6)));
+
+        map.setTile(new Position(6, 7), new MudTile(new Position(6,7)));
+
+        map.setTile(new Position(5, 8), new MudTile(new Position(5,8)));
 
         // red door
         map.setTile(new Position(3, 7), new RedDoorTile(new Position(3,7)));
@@ -385,6 +408,9 @@ public class LevelLoader {
 
         // red key
         map.setTile(new Position(1, 8), new RedKeyItem(new Position(1,8)));
+
+        // hiking boots
+        map.setTile(new Position(8, 5), new HikingBootsItem(new Position(8,5)));
 
         return map;
     }
