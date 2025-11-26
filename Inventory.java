@@ -8,6 +8,7 @@ public class Inventory {
     private int microchips;
     private boolean hasFireBoots = false;
     private boolean hasFlippers = false;
+    private boolean hasHikingBoots = false;
 
     /**
      * (Constructor) creates an empty inventory with no items or equipment
@@ -87,6 +88,13 @@ public class Inventory {
     }
 
     /**
+     * Equips hiking boots, allowing Chip to walk on mud tiles faster.
+     */
+    public void equipHikingBoots(){
+        hasHikingBoots = true;
+    }
+
+    /**
      * Checks if Chip can swim through water (has flippers equipped)
      */
     public boolean canSwim(){
@@ -98,6 +106,13 @@ public class Inventory {
      */
     public boolean canWalkOnFire(){
         return hasFireBoots;
+    }
+
+    /**
+     * Checks if Chip can walk on mud (has hiking boots equipped)
+     */
+    public boolean canWalkOnMud(){
+        return hasHikingBoots;
     }
 
     /**
@@ -123,5 +138,6 @@ public class Inventory {
         this.microchips = 0;
         this.hasFireBoots = false;
         this.hasFlippers = false;
+        this.hasHikingBoots = false;
     }
 }
