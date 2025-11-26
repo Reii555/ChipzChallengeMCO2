@@ -288,7 +288,7 @@ public class LevelLoader {
         map.setTile(new Position(5, 3), new RedDoorTile(new Position(5,3)));
 
         // exit tile
-        map.setTile(new Position(3, 6), new ExitTile(new Position(3,6)));
+        map.setTile(new Position(8, 1), new ExitTile(new Position(8,1)));
 
         // enemy
         // Add AngryTeeth enemy at starting position (1,1)
