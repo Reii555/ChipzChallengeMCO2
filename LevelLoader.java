@@ -301,7 +301,7 @@ public class LevelLoader {
         map.setTile(new Position(8, 2), new Microchip(new Position(8,2)));
 
         // red key
-        map.setTile(new Position(8, 1), new RedKeyItem(new Position(8,1)));
+        map.setTile(new Position(8, 4), new RedKeyItem(new Position(8,4)));
 
         return map;
     }

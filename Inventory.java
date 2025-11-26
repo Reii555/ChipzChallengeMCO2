@@ -115,7 +115,7 @@ public class Inventory {
     }
 
     /**
-     * Resets inventory for new level
+     * Resets inventory for new level/redo when game over
      */
     public void reset() {
         this.redKeys = 0;
