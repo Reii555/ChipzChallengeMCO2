@@ -395,7 +395,7 @@ public class LevelLoader {
         map.setTile(new Position(3, 7), new RedDoorTile(new Position(3,7)));
 
         // blue door
-        map.setTile(new Position(3, 7), new RedDoorTile(new Position(3,7)));
+        map.setTile(new Position(3, 7), new BlueDoorTile(new Position(3,7)));
 
         // exit tile
         map.setTile(new Position(1, 6), new ExitTile(new Position(1,6)));
@@ -408,6 +408,9 @@ public class LevelLoader {
 
         // red key
         map.setTile(new Position(1, 8), new RedKeyItem(new Position(1,8)));
+
+        // blue key
+        map.setTile(new Position(6, 2), new BlueKeyItem(new Position(6,2)));
 
         // hiking boots
         map.setTile(new Position(8, 5), new HikingBootsItem(new Position(8,5)));
