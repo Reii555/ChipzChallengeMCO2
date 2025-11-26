@@ -137,11 +137,6 @@ public class Map {
         Tile tile = getTileAt(pos.getX(), pos.getY());
         return tile != null && tile.isPassable(c); // fo null safety !!@
         
-        /*if(tile == null){
-            return false; 
-        } else {
-            return tile.isPassable(c);
-        }*/
     }
 
     /*
